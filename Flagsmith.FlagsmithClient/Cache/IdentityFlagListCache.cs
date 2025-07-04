@@ -1,4 +1,6 @@
-﻿using Flagsmith.Providers;
+﻿using System;
+using System.Threading.Tasks;
+using Flagsmith.Providers;
 
 namespace Flagsmith.Cache
 {
@@ -15,11 +17,11 @@ namespace Flagsmith.Cache
             _identityWrapper = identityWrapper;
         }
 
-        public IFlags GetLatestFlags(GetIdentityFlagsDelegate getFlagsDelegate)
+        public async ValueTask<IFlags> GetLatestFlags(Func<IdentityWrapper, ValueTask<IFlags>> getFlagsDelegate)
         {
             if (IsCacheStale())
             {
-                _flags = getFlagsDelegate(_identityWrapper).Result;
+                _flags = await getFlagsDelegate(_identityWrapper);
                 _timestamp = _dateTimeProvider.Now();
             }
 

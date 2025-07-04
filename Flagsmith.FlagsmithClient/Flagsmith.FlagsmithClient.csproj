@@ -18,7 +18,6 @@
     <RepositoryUrl>https://github.com/Flagsmith/flagsmith-dotnet-client</RepositoryUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-    <RootNamespace>Flagsmith</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

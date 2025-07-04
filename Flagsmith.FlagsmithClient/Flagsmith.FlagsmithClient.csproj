@@ -1,44 +1,52 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <LangVersion>preview</LangVersion>
-        <DefaultItemExcludes>$(DefaultItemExcludes);example/**;</DefaultItemExcludes>
-        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <PackageId>Flagsmith</PackageId>
-        <Title>Flagsmith</Title>
-        <Version>8.0.2</Version>
-        <Authors>flagsmith</Authors>
-        <Company>Flagsmith</Company>
-        <PackageDescription>Client SDK for Flagsmith. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at https://flagsmith.com/</PackageDescription>
-        <Copyright>Copyright © 2023 Bullet Train Ltd</Copyright>
-        <PackageProjectUrl>https://flagsmith.com/</PackageProjectUrl>
-        <PackageIcon>icon.png</PackageIcon>
-        <PackageReleaseNotes>Singleton HTTP client</PackageReleaseNotes>
-        <PackageTags>feature flags remote config toggles</PackageTags>
-        <RepositoryUrl>https://github.com/Flagsmith/flagsmith-dotnet-client</RepositoryUrl>
-        <NeutralLanguage>en-GB</NeutralLanguage>
-        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
-        <RootNamespace>Flagsmith</RootNamespace>
-        <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+    <DefaultItemExcludes>$(DefaultItemExcludes);example/**;</DefaultItemExcludes>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PackageId>Flagsmith</PackageId>
+    <Title>Flagsmith</Title>
+    <Version>8.0.2</Version>
+    <Authors>flagsmith</Authors>
+    <Company>Flagsmith</Company>
+    <PackageDescription>Client SDK for Flagsmith. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at https://flagsmith.com/</PackageDescription>
+    <Copyright>Copyright © 2023 Bullet Train Ltd</Copyright>
+    <PackageProjectUrl>https://flagsmith.com/</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReleaseNotes>Singleton HTTP client</PackageReleaseNotes>
+    <PackageTags>feature flags remote config toggles</PackageTags>
+    <RepositoryUrl>https://github.com/Flagsmith/flagsmith-dotnet-client</RepositoryUrl>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <RootNamespace>Flagsmith</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="Polly" Version="7.2.3"/>
-        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.3" />
-        <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-        <!-- currently we duplicate the semver dependency here from Engine project -->
-        <!-- TODO: build the Engine at build time and reference it using a PackageReference -->
-        <PackageReference Include="semver" Version="2.3.0"/>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Polly" Version="7.2.3"/>
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.3"/>
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
 
-        <ProjectReference Include="..\Flagsmith.Engine\Flagsmith.Engine.csproj" PrivateAssets="all"/>
-        <None Include="..\LICENSE" Pack="true" PackagePath="" visible="false"/>
-        <None Include="icon.png" Pack="true" PackagePath="\"/>
-    </ItemGroup>
+    <!-- currently we duplicate the semver dependency here from Engine project -->
+    <!-- TODO: build the Engine at build time and reference it using a PackageReference -->
+    <PackageReference Include="semver" Version="2.3.0"/>
+
+    <ProjectReference Include="..\Flagsmith.Engine\Flagsmith.Engine.csproj" PrivateAssets="all"/>
+    <None Include="..\LICENSE" Pack="true" PackagePath="" visible="false"/>
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>

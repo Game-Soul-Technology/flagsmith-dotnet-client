@@ -1,0 +1,19 @@
+{
+  "name": "pillsgood.flagsmith",
+  "displayName": "Flagsmith",
+  "version": "8.0.2",
+  "unity": "2019.1",
+  "description": "Client SDK for Flagsmith. Ship features with confidence using feature flags and remote config. Host yourself or use our hosted version at https://flagsmith.com/",
+  "keywords": [
+    "nuget"
+  ],
+  "category": null,
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "org.nuget.microsoft.extensions.logging.abstractions": "6.0.0",
+    "org.nuget.polly": "7.2.3",
+    "org.nuget.semver": "2.3.0",
+    "org.nuget.system.threading.tasks.extensions": "4.6.3"
+  },
+  "_fingerprint": "0672d9a730c95bce06213465f18182ed690e9d05"
+}

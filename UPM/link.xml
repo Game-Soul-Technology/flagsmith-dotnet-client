@@ -1,0 +1,4 @@
+﻿<linker>
+  <assembly fullname="Flagsmith.Engine" preserve="all"/>
+  <assembly fullname="Flagsmith.FlagsmithClient" preserve="all"/>
+</linker>

@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flagsmith.FlagsmithClient</name>
+    </assembly>
+    <members>
+        <member name="M:Flagsmith.AnalyticsProcessor.Flush">
+            <summary>
+            Post the features on the provided endpoint and clear the cached data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Flagsmith.AnalyticsProcessor.TrackFeature(System.String)">
+            <summary>
+            Record analytics about feature usage and call Flush() to send them to the server after the configured time interval.
+            This implementation supports multi-threading and parallel processing by storing the analytics data in a separated Dictionary per thread.
+            </summary>
+            <param name="featureId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Flagsmith.AnalyticsProcessor.GetAggregatedAnalytics">
+            <summary>
+            Gets aggregated analytics data.
+            This method is thread safe.
+            It will aggregate the analytics data from all threads registered in AnalyticsDataThreads.
+            </summary>
+            <returns>Dictionary of feature name and usage count</returns>
+        </member>
+        <member name="T:Flagsmith.DisposableLock">
+            <summary>
+            This class is to ensure that Flush doesn't flush the same data multiple times.
+            It functions basically like an async lock but with disposable semantics.
+            Opportunity to improve it to use `WaitAsync` and `ReleaseAsync` in future.
+            </summary>
+        </member>
+        <member name="T:Flagsmith.FlagsmithClient">
+            <summary>
+            A Flagsmith client.
+            Provides an interface for interacting with the Flagsmith http API.
+            </summary>
+            <exception cref="T:Flagsmith.FlagsmithAPIError">
+            Thrown when error occurs during any http request to Flagsmith api.Not applicable for polling or ananlytics.
+            </exception>
+            <exception cref="T:Flagsmith.FlagsmithClientError">
+            A general exception with a error message. Example: Feature not found, etc.
+            </exception>
+        </member>
+        <member name="M:Flagsmith.FlagsmithClient.GetEnvironmentFlags">
+            <summary>
+            Get all the default for flags for the current environment.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.FlagsmithClient.GetIdentityFlags(System.String)">
+            <summary>
+            Get all the flags for the current environment for a given identity.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.FlagsmithClient.GetIdentityFlags(System.String,System.Collections.Generic.List{Flagsmith.ITrait},System.Boolean)">
+            <summary>
+            Get all the flags for the current environment for a given identity with provided traits.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.ApiUri">
+            <summary>
+            Versioned base Flagsmith API URI to use for all requests. Defaults to
+            <c>https://edge.api.flagsmith.com/api/v1/</c>.
+            <example><code>new Uri("https://flagsmith.example.com/api/v1/")</code></example>
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.EnvironmentKey">
+            <summary>
+            The environment key obtained from Flagsmith interface.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.EnableLocalEvaluation">
+            <summary>
+            Enables local evaluation of flags.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.EnvironmentRefreshInterval">
+            <summary>
+            If using local evaluation, specify the interval period between refreshes of local environment data.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.DefaultFlagHandler">
+            <summary>
+            Callable which will be used in the case where flags cannot be retrieved from the API or a non existent feature is requested.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Flagsmith.FlagsmithConfiguration.Logger" -->
+        <member name="P:Flagsmith.FlagsmithConfiguration.EnableAnalytics">
+            <summary>
+            if enabled, sends additional requests to the Flagsmith API to power flag analytics charts.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.RequestTimeout">
+            <summary>
+            Number of seconds to wait for a request to complete before terminating the request
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.Retries">
+            <summary>
+            Total http retries for every failing request before throwing the final error.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.CustomHeaders">
+            <summary>
+            Additional headers to add to requests made to the Flagsmith API
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.CacheConfig">
+            <summary>
+            If enabled, the SDK will cache the flags for the duration specified in the CacheConfig
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.OfflineMode">
+            <summary>
+            Indicates whether the client is in offline mode.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.OfflineHandler">
+            <summary>
+            Handler for offline mode operations.
+            </summary>
+        </member>
+        <member name="P:Flagsmith.FlagsmithConfiguration.HttpClient">
+            <summary>
+            Http client used for flagsmith-API requests.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.IAnalyticsProcessor.Flush">
+            <summary>
+            Post the features on the provided endpoint and clear the cached data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Flagsmith.IAnalyticsProcessor.TrackFeature(System.String)">
+            <summary>
+            Send analytics to server about feature usage.
+            </summary>
+            <param name="featureId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Flagsmith.IAnalyticsProcessor.GetAggregatedAnalytics">
+            <summary>
+            Get aggregated analytics data.
+            </summary>
+            <returns>Dictionary of feature name and usage count</returns>
+        </member>
+        <member name="M:Flagsmith.IFlagsmithClient.GetEnvironmentFlags">
+            <summary>
+            Get all the default for flags for the current environment.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.IFlagsmithClient.GetIdentityFlags(System.String)">
+            <summary>
+            Get all the flags for the current environment for a given identity.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.IFlagsmithClient.GetIdentityFlags(System.String,System.Collections.Generic.List{Flagsmith.ITrait},System.Boolean)">
+            <summary>
+            Get all the flags for the current environment for a given identity with provided traits.
+            </summary>
+        </member>
+        <member name="M:Flagsmith.IPollingManager.StartPoll">
+            <summary>
+            Start calling callback continously after provided interval
+            </summary>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Flagsmith.IPollingManager.StopPoll">
+            <summary>
+            Stop continously exectuing callback
+            </summary>
+        </member>
+        <member name="M:Flagsmith.PollingManager.#ctor(System.Func{System.Threading.Tasks.Task},System.TimeSpan)">
+            <param name="callback">Awaitable function that will be polled.</param>
+            <param name="timespan">Polling interval.</param>
+        </member>
+        <member name="M:Flagsmith.PollingManager.StartPoll">
+            <summary>
+            Start calling callback continuously after provided interval
+            </summary>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Flagsmith.PollingManager.StopPoll">
+            <summary>
+            Stop continuously executing callback
+            </summary>
+        </member>
+    </members>
+</doc>

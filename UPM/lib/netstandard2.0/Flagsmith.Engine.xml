@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Flagsmith.Engine</name>
+    </assembly>
+    <members>
+        <member name="M:FlagsmithEngine.Engine.GetEnvironmentFeatureStates(FlagsmithEngine.Environment.Models.EnvironmentModel)">
+            <summary>
+            Get a list of feature states for a given environment
+            </summary>
+            <param name="environmentModel">the environment model object</param>
+            <returns>list of feature-state model</returns>
+        </member>
+        <member name="M:FlagsmithEngine.Engine.GetEnvironmentFeatureState(FlagsmithEngine.Environment.Models.EnvironmentModel,System.String)">
+            <summary>
+            Get a specific feature state for a given feature_name in a given environment
+            </summary>
+            <param name="environmentModel">environment model object</param>
+            <param name="featureName">name of a feature to get</param>
+            <returns>feature-state model</returns>
+        </member>
+        <member name="M:FlagsmithEngine.Feature.Models.FeatureStateModel.IsHigherPriority(FlagsmithEngine.Feature.Models.FeatureStateModel)">
+            <summary>
+            Another FeatureStateModel is deemed to be higher priority if and only if 
+            it has a FeatureSegment and either this.FeatureSegment is null or the 
+            value of other.FeatureSegment.priority is lower than that of 
+            this.FeatureSegment.priority. 
+            </summary>
+        </member>
+    </members>
+</doc>
